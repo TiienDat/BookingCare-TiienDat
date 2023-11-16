@@ -92,7 +92,7 @@ class Login extends Component {
                             <div className='col-12' style={{ color: 'red' }}>
                                 {this.state.errMessage}
                             </div>
-                            <div className='mt-3' >
+                            <div className='col-12 mt-3' >
                                 <button className='btn-login'
                                     onClick={() => { this.handleLogin() }}
                                 >Login</button>

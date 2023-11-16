@@ -6,12 +6,13 @@ export const path = {
     SYSTEM: '/system'
 };
 
-export const languages = {
+export const LANGUAGES = {
     VI: 'vi',
     EN: 'en'
 };
 
-export const manageActions = {
+export const CRUD_ACTION = {
+    CREATE: "CREATE",
     ADD: "ADD",
     EDIT: "EDIT",
     DELETE: "DELETE"
