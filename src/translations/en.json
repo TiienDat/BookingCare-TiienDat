@@ -13,7 +13,7 @@
     },
     "banner": {
         "placeholder": "Find a medical specialisth",
-        "title1": "MEDICAL FOUNDATION",
+        "title1": "MEDICAL PLATFORM",
         "title2": "COMPREHENSIVE HEALTH CARE",
         "child1": "Specialized Examination",
         "child2": "Remote examination",
@@ -47,6 +47,10 @@
             "manage-specialty": "Manage Specialty",
             "handbook": "Handbook",
             "manage-handbook": "Manage Handbook"
+        },
+        "doctor": {
+            "manage-schedule": "Manage Doctor's Schedule",
+            "manage-patient": "Manage Patient"
         }
     },
     "manage-user": {
@@ -64,5 +68,61 @@
         "save": "Save",
         "edit": "Save Edit",
         "loadimg": "Load Image"
+    },
+    "homepage": {
+        "outstanding-doctor": "Outstanding Doctor",
+        "more-info": "More Info",
+        "specialty-popular": "Popular Specialties"
+    },
+    "manage-schedule": {
+        "title": "Manage doctor's examination plan",
+        "choose-doctor": "Choose Doctor",
+        "choose-date": "Choose Date",
+        "save-info": "Save Info"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule",
+            "no-schedule": "Doctors do not have appointments during this time, please choose another time!",
+            "choose": "Choose ",
+            "book-free": " and book (free)!"
+        },
+        "extra-infor-doctor": {
+            "text-address": " Address ",
+            "price": "Examination Price: ",
+            "details": "See details",
+            "payment": "Patients can pay by form: ",
+            "hide-price": "Hide price list"
+        },
+        "booking-modal": {
+            "infor-booking": "Information on scheduling medical examinations",
+            "title": "Free Appointment",
+            "fullName": "Full Name",
+            "phoneNumber": "Phone Number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reason for Examination",
+            "birthday": "Date of Birth",
+            "gender": "Genders",
+            "select": "Select",
+            "btn-confirm": "Confirm",
+            "btn-cancel": "Cancel"
+        }
+    },
+    "admin": {
+        "manage-doctor": "Create More Doctor Information",
+        "choose-doctor": "Select doctor",
+        "infor": "Information",
+        "save-infor": "Save",
+        "create-infor": "Create",
+        "save": " Save",
+        "price": "Price",
+        "payment": "Payment",
+        "province": "Province",
+        "nameClinic": "Clinic's Name",
+        "addressClinic": "Clinic's address",
+        "note": "Note",
+        "specialty": "Specialty",
+        "select-clinic": "Select Clinic"
     }
 }

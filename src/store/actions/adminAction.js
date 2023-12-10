@@ -1,12 +1,12 @@
 import actionTypes from './actionTypes';
-import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService } from '../../services/userService';
+import {
+    getAllCodeService, createNewUserService,
+    getAllUsers, deleteUserService, editUserService,
+    getTopDoctorHomeService, getAllDoctors, saveDetailDoctorService,
+    getAllSpecialty, getAllClinic
+} from '../../services/userService';
 import { generatePath } from 'react-router-dom/cjs/react-router-dom.min';
 import { toast } from 'react-toastify';
-
-// export const fetchGenderStart = () => ({
-//     type: actionTypes.FETCH_GENDER_START
-// })
-
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -133,6 +133,8 @@ export const fetchAllUsersStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllUsers('ALL');
+            let res1 = await getTopDoctorHomeService(3)
+            console.log('check top doctor :', res1)
             if (res && res.errCode === 0) {
                 dispatch(fetchAllUserSuccess(res.users.reverse()));
             } else {
@@ -175,4 +177,140 @@ export const deleteUserSuccess = () => ({
 })
 export const deleteUserFailed = () => ({
     type: actionTypes.DELETE_USER_FAILED
+})
+
+export const fetchTopDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopDoctorHomeService('')
+            console.log('check response data limit:', res)
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+                    dataDoctors: res.data
+                })
+            }
+        } catch (error) {
+            console.log('fetdch top doctor failded :', error)
+            dispatch({
+                type: actionTypes.FETCH_TOP_DOCTORS_FAILDED,
+
+            })
+        }
+    }
+}
+export const fetchAllDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctors('')
+            console.log('check response get all doctors:', res)
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+                    dataDoctors: res.data
+                })
+            }
+        } catch (error) {
+            console.log('fetdch top doctor failded :', error)
+            dispatch({
+                type: actionTypes.FETCH_ALL_DOCTORS_FAILDED,
+
+            })
+        }
+    }
+}
+export const fetchAllDoctorsSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+    users: data
+})
+export const fetchAllDoctorsFailed = () => ({
+    type: actionTypes.FETCH_ALL_DOCTORS_FAILDED
+})
+export const saveDetailDoctor = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveDetailDoctorService(data);
+            if (res && res.errCode === 0) {
+                toast.success("Save detail Doctor succeed!")
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTORS_SUCCESS
+                });
+            } else {
+                toast.error("Save detail Doctor error!")
+                dispatch({
+                    type: actionTypes.SAVE_DETAIL_DOCTORS_FAILDED
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: actionTypes.SAVE_DETAIL_DOCTORS_FAILDED
+            });
+            console.log('Save detail Doctor Failded error:', error)
+        }
+    }
+}
+// export const saveDetailDoctorSuccess = () => ({
+//     type: actionTypes.SAVE_DETAIL_DOCTORS_SUCCESS,
+// })
+// export const saveDetailDoctorFailed = () => ({
+//     type: actionTypes.SAVE_DETAIL_DOCTORS_FAILDED
+// })
+export const fetchAllScheduleTime = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService('TIME')
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+                    dataTime: res.data
+                })
+            }
+        } catch (error) {
+            console.log('fetdch top doctor failded :', error)
+            dispatch({
+                type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILDED,
+
+            })
+        }
+    }
+}
+export const getRequiredDoctorInfor = () => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START
+            })
+            let resPrice = await getAllCodeService("PRICE")
+            let resPayment = await getAllCodeService("PAYMENT")
+            let resProvince = await getAllCodeService("PROVINCE")
+            let resSpecialty = await getAllSpecialty()
+            let resClinic = await getAllClinic()
+            if (resPrice && resPrice.errCode === 0 &&
+                resPayment && resPayment.errCode === 0 &&
+                resProvince && resProvince.errCode === 0 &&
+                resSpecialty && resSpecialty.errCode === 0 &&
+                resClinic && resClinic.errCode === 0) {
+                let data = {
+                    resPrice: resPrice.data,
+                    resPayment: resPayment.data,
+                    resProvince: resProvince.data,
+                    resSpecialty: resSpecialty.data,
+                    resClinic: resClinic.data
+                }
+                dispatch(fetchRequiredDoctorInforSuccess(data))
+            } else {
+                dispatch(fetchRequiredDoctorInforFaided());
+            }
+        } catch (error) {
+            dispatch(fetchRequiredDoctorInforFaided());
+            console.log('check error:', error)
+        }
+    }
+}
+export const fetchRequiredDoctorInforSuccess = (allRequireData) => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
+    data: allRequireData
+})
+export const fetchRequiredDoctorInforFaided = () => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILDED
 })

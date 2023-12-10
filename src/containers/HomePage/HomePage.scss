@@ -34,20 +34,21 @@
                 .bg-image{
                     width: 278px;
                     height: 150px;
-                    background-position: center center;
+                    background-position: center;
                     background-repeat: no-repeat ;
                     background-size: cover;
                     background-color: #eee;
                     position: relative;
     
                     &.section-specialty{
-                        background-image: url('../../assets/hetieuhoa.jpg');
+                        background-image: url('../../assets/specialty/bacsigia.jpg');
                     }
-                    &.section-medical-facility{
-                        background-image: url('../../assets/logobvquandoi.jpg');
+                    &.section-medical-facility{    
+                    height: 150px;
+                    width: 295px;
                     }
                     &.outstanding-doctor{
-                        background-image: url('../../assets/doctor-check.jpg');
+                        // background-image: url('../../assets/doctor-check.jpg');
                         width: 120px;
                         height: 120px;
                         border-radius: 50%;
@@ -61,7 +62,9 @@
         }
     }
 }
-
+.slick-disabled{
+    display: none !important;
+}
 .section-share{
     
     height: 330px;
@@ -100,6 +103,7 @@
 .outstanding-doctor{
     .section-customize{
         padding: 5px;
+        cursor: pointer;
     }
     .customize-border{
         border: 1px solid orange;

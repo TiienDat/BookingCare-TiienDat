@@ -1,0 +1,24 @@
+.rm-container{
+    .rm-row{
+        .rm-title-left{
+            
+        }
+        .rm-title-right{
+            text-align: right;
+            padding-top: 0;
+        }
+        .rm-body{
+            height: 200px;
+            width: 100%;
+        }
+        .rm-footer{
+            text-align: right;
+            .btn-confirm{
+
+            }
+            .btn-cancel{
+
+            }
+        }
+    }
+}

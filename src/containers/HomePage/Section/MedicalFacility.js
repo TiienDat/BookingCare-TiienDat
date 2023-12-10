@@ -1,19 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../HomePage.scss'
+import './MedicalFacility.scss'
 import { FormattedMessage } from 'react-intl';
 import HomeHeader from '../HomeHeader';
+import { getAllClinic } from '../../../services/userService'
 import Slider from 'react-slick';
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 import SpecialtyImg from "../../../assets/co-xuong-khop.jpg"
 
 class Specialty extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            arrClinic: []
+        }
+    }
 
+    async componentDidMount() {
+        let res = await getAllClinic();
+        this.setState({
+            arrClinic: res.data ? res.data : 0
+        })
+    }
 
+    handleViewDetailClinic = (clinic) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-clinic/${clinic.id}`)
+        }
+    }
 
     render() {
-
+        let { arrClinic } = this.state
+        console.log('check arr clinic', arrClinic)
         return (
             <>
                 <div className='section-share section-medical-facility'>
@@ -24,54 +44,27 @@ class Specialty extends Component {
                         </div>
                         <div className='section-body'>
                             <Slider {...this.props.settings}>
-                                <div className='section-customize'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image section-medical-facility'></div>
-                                    </div>
-                                    <div className='position text-center'>
-                                        <div>Bệnh viện trung ương quân đội</div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image section-medical-facility'></div>
-                                    </div>
-                                    <div className='position text-center'>
-                                        <div>Bệnh viện trung ương quân đội 2</div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image section-medical-facility'></div>
-                                    </div>
-                                    <div className='position text-center'>
-                                        <div>Bệnh viện trung ương quân đội 3 </div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image section-medical-facility'></div>
-                                    </div>
-                                    <div className='position text-center'>
-                                        <div>Bệnh viện trung ương quân đội 4</div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image section-medical-facility'></div>
-                                    </div>
-                                    <div className='position text-center'>
-                                        <div>Bệnh viện trung ương quân đội 5</div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='outer-bg'>
-                                        <div className='bg-image section-medical-facility'></div>
-                                    </div>
-                                    <div className='position text-center'>
-                                        <div>Bệnh viện trung ương quân đội 6</div>
-                                    </div>
-                                </div>
+                                {arrClinic && arrClinic.length > 0 &&
+                                    arrClinic.map((item, index) => {
+                                        return (
+                                            <>
+                                                <div className='section-customize clinic-child' key={index}
+                                                    onClick={() => this.handleViewDetailClinic(item)}
+                                                >
+                                                    <div className='outer-bg'>
+                                                        <div className='bg-image section-medical-facility'
+                                                            style={{ backgroundImage: `url(${item.image})` }}>
+                                                        </div>
+                                                    </div>
+                                                    <div className='position text-center'>
+                                                        <div className='clinic-name'>{item.name}</div>
+                                                    </div>
+                                                </div>
+                                            </>
+
+                                        )
+                                    })
+                                }
                             </Slider>
                         </div>
                     </div>
@@ -96,4 +89,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Specialty));

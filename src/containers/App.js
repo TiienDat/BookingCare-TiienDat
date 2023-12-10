@@ -4,8 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
-
-
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 import CustomScrollbars from '../components/CustomScrollbars.js'
 
@@ -20,6 +18,12 @@ import System from '../routes/System';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
 import HomePage from './HomePage/HomePage.js';
+import DetailDoctor from './Patient/Doctor/DetailDoctor.js';
+import Doctor from '../routes/Doctor.js';
+import verifyEmail from './Patient/verifyEmail.js';
+import DetailSpecialty from './Patient/Specialty/DetailSpecialty.js';
+import DetailClinic from './Patient/Clinic/DetailClinic.js';
+
 
 class App extends Component {
 
@@ -54,7 +58,12 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                    <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
+                                    <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                                    <Route path={path.VERIFY_EMAIL_BOOKING} component={verifyEmail} />
+                                    <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
+                                    <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
                                 </Switch>
                             </CustomScrollbars>
                         </span>

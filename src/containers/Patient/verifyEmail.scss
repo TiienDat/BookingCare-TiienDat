@@ -1,0 +1,38 @@
+.verify-container{
+    .verify-row{
+        margin-top: 10px;
+        height: 200px;
+        display: flex;
+        .left{
+            width: 30%;
+            .succeed{
+                font-size: 70px;
+                color: rgb(0, 174, 255);
+                display: flex;
+                justify-content:center;
+                padding-top: 60px;
+            }
+            .false{
+                font-size: 70px;
+                color: red;
+                display: flex;
+                justify-content:center;
+                margin-top: 60px;
+            }
+        }
+        .right{
+            width: 70%;
+            margin-top:80px;
+            .succeed{
+                text-transform: uppercase;
+                font-size: 17px;
+                color: rgb(0, 174, 255);
+            }
+            .false{
+                text-transform: uppercase;
+                font-size: 17px;
+                color: red;
+            }
+        }
+    }
+}

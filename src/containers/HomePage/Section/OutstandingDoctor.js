@@ -4,90 +4,82 @@ import '../HomePage.scss'
 import { FormattedMessage } from 'react-intl';
 import HomeHeader from '../HomeHeader';
 import Slider from 'react-slick';
+import * as actions from '../../../store/actions'
+import { LANGUAGES } from '../../../utils/constant';
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 
 class OutstandingDoctor extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            arrDoctors: []
+        }
+    }
 
+    componentDidMount() {
+        this.props.loadTopDoctorRedux();
 
+    }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+            this.setState({
+                arrDoctors: this.props.topDoctorsRedux
+            })
+        }
+    }
+    handleViewDetailDoctor = (doctor) => {
+        console.log('check datail doctor', doctor)
+        if (this.props.history) {
+            this.props.history.push(`/detail-doctor/${doctor.id}`)
+        }
+    }
     render() {
-
+        let { language } = this.props;
+        let arrDoctors = this.state.arrDoctors;
+        console.log('check ardoctor showw:', arrDoctors)
+        // arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors)
         return (
             <>
                 <div className='section-share outstanding-doctor'>
                     <div className='section-container'>
                         <div className='section-header'>
-                            <span className='title-section'>Bác Sĩ Nổi Bật</span>
-                            <button className='btn-section'>Xem thêm</button>
+                            <span className='title-section'>
+                                <FormattedMessage id="homepage.outstanding-doctor" />
+                            </span>
+                            <button className='btn-section'>
+                                <FormattedMessage id="homepage.more-info" />
+                            </button>
                         </div>
                         <div className='section-body'>
                             <Slider {...this.props.settings}>
-                                <div className='section-customize'>
-                                    <div className='customize-border'>
-                                        <div className='outer-background'>
-                                            <div className='bg-image outstanding-doctor'></div>
-                                        </div>
-                                        <div className='position text-center'>
-                                            <div>Giáo sư tiến sĩ 1</div>
-                                            <div>Tim Mạch</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='customize-border'>
-                                        <div className='outer-background'>
-                                            <div className='bg-image outstanding-doctor'></div>
-                                        </div>
-                                        <div className='position text-center'>
-                                            <div>Giáo sư tiến sĩ 2</div>
-                                            <div>Tim Mạch</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='customize-border'>
-                                        <div className='outer-background'>
-                                            <div className='bg-image outstanding-doctor'></div>
-                                        </div>
-                                        <div className='position text-center'>
-                                            <div>Giáo sư tiến sĩ 3</div>
-                                            <div>Tim Mạch</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='customize-border'>
-                                        <div className='outer-background'>
-                                            <div className='bg-image outstanding-doctor'></div>
-                                        </div>
-                                        <div className='position text-center'>
-                                            <div>Giáo sư tiến sĩ 4</div>
-                                            <div>Tim Mạch</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='customize-border'>
-                                        <div className='outer-background'>
-                                            <div className='bg-image outstanding-doctor'></div>
-                                        </div>
-                                        <div className='position text-center'>
-                                            <div>Giáo sư tiến sĩ 5</div>
-                                            <div>Tim Mạch</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='section-customize'>
-                                    <div className='customize-border'>
-                                        <div className='outer-background'>
-                                            <div className='bg-image outstanding-doctor'></div>
-                                        </div>
-                                        <div className='position text-center'>
-                                            <div>Giáo sư tiến sĩ 6</div>
-                                            <div>Tim Mạch</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {arrDoctors && arrDoctors.length > 0 &&
+                                    arrDoctors.map((item, index) => {
+                                        let imageBase64 = '';
+                                        if (item.image) {
+                                            imageBase64 = new Buffer(item.image, 'base64').toString('binary');
+                                        }
+                                        let nameVi = `${item.positionData.valueVi},${item.lastName} ${item.firstName}`
+                                        let nameEn = `${item.positionData.valueEn},${item.firstName} ${item.lastName}`
+                                        if (item.roleId === 'R2') {
+                                            return (
+                                                <div className='section-customize' key={index} onClick={() => this.handleViewDetailDoctor(item)}>
+                                                    <div className='customize-border'>
+                                                        <div className='outer-background'>
+                                                            <div className='bg-image outstanding-doctor'
+                                                                style={{ backgroundImage: `url(${imageBase64})` }}
+                                                            />
+                                                        </div>
+                                                        <div className='position text-center'>
+                                                            <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                                                            <div>Tâm Lý</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    })
+                                }
                             </Slider>
                         </div>
                     </div>
@@ -103,13 +95,14 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
+        topDoctorsRedux: state.admin.dataDoctors
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        loadTopDoctorRedux: () => dispatch(actions.fetchTopDoctor())
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor));
