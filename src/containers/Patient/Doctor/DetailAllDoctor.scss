@@ -1,0 +1,25 @@
+.container {
+    .row{
+        display: flex;
+        // justify-content: center;
+        .moduleDoctor{
+            height: 200px;
+            display: flex;
+            flex-direction: row;
+            // justify-content: center;
+            align-items: center;
+            margin: 20px 10px;
+            border-bottom: 1px solid gray;
+            .bg-image{
+            height: 150px;
+            width: 150px;
+            background-repeat: no-repeat;
+            background-repeat: no-repeat;
+            background-position: left;
+            }
+            .content-right{
+               
+            }
+        }
+    }
+}

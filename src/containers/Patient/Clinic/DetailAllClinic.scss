@@ -1,0 +1,24 @@
+.container {
+    .row{
+        display: flex;
+        justify-content: center;
+        padding: 20px 20px;
+        .module-clinic{
+            height: 200px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            margin: 20px 10px;
+            .bg-image{
+                height: 90%;
+                width: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+    }
+}

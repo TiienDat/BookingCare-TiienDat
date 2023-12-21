@@ -18,6 +18,11 @@ class HomeHeader extends Component {
             this.props.history.push(`/home`)
         }
     }
+    handleViewDetailAll = (id) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-all-${id}`)
+        }
+    }
     render() {
         let language = this.props.language
         return (
@@ -35,15 +40,21 @@ class HomeHeader extends Component {
                             </div>
                         </div>
                         <div className='center-content'>
-                            <div className='child-content'>
+                            <div className='child-content'
+                                onClick={() => this.handleViewDetailAll('specialty')}
+                            >
                                 <div><b><FormattedMessage id="homeheader.speciality" /></b></div>
                                 <div className='sub-title'><FormattedMessage id="homeheader.search-doctor" /></div>
                             </div>
-                            <div className='child-content'>
+                            <div className='child-content'
+                                onClick={() => this.handleViewDetailAll('clinic')}
+                            >
                                 <div><b><FormattedMessage id="homeheader.health-facility" /></b></div>
                                 <div className='sub-title'><FormattedMessage id="homeheader.select-room" /></div>
                             </div>
-                            <div className='child-content'>
+                            <div className='child-content'
+                                onClick={() => this.handleViewDetailAll('doctor')}
+                            >
                                 <div><b><FormattedMessage id="homeheader.doctor" /></b></div>
                                 <div className='sub-title'><FormattedMessage id="homeheader.select-doctor" /></div>
                             </div>

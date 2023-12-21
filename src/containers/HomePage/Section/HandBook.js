@@ -17,13 +17,14 @@ class HandBook extends Component {
                 <div className='section-share hand-book'>
                     <div className='section-container'>
                         <div className='section-header'>
-                            <span className='title-section'>Chuyên Khoa Phổ Biến</span>
+                            <span className='title-section'>Cẩm nang hỏi đáp</span>
                             <button className='btn-section'>Xem thêm</button>
                         </div>
                         <div className='section-body'>
                             <Slider {...this.props.settings}>
                                 <div className='section-customize'>
-                                    <div className='bg-image hand-book'></div>
+                                    <div className='bg-image hand-book'>
+                                    </div>
                                     <div>Hand Book 1</div>
                                 </div>
                                 <div className='section-customize'>

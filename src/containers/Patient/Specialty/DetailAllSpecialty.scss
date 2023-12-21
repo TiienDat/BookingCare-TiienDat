@@ -1,0 +1,19 @@
+.container {
+    .row{
+        display: flex;
+        justify-content: center;
+        .module{
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            margin: 20px 10px;
+            .bg-image{
+                height: 90%;
+                width: 100%;
+            }
+        }
+    }
+}

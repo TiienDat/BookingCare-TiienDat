@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './MedicalFacility.scss'
-import { FormattedMessage } from 'react-intl';
-import HomeHeader from '../HomeHeader';
 import { getAllClinic } from '../../../services/userService'
 import Slider from 'react-slick';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
-
-
-import SpecialtyImg from "../../../assets/co-xuong-khop.jpg"
+import { FormattedMessage } from 'react-intl'
 
 class Specialty extends Component {
     constructor(props) {
@@ -30,7 +26,11 @@ class Specialty extends Component {
             this.props.history.push(`/detail-clinic/${clinic.id}`)
         }
     }
-
+    handleViewMore = () => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-all-clinic`)
+        }
+    }
     render() {
         let { arrClinic } = this.state
         console.log('check arr clinic', arrClinic)
@@ -39,8 +39,10 @@ class Specialty extends Component {
                 <div className='section-share section-medical-facility'>
                     <div className='section-container'>
                         <div className='section-header'>
-                            <span className='title-section'>Cơ sở Y Tế</span>
-                            <button className='btn-section'>Xem thêm</button>
+                            <span className='title-section'><FormattedMessage id="homepage.outstanding-clinic" /></span>
+                            <button className='btn-section'
+                                onClick={() => this.handleViewMore()}
+                            ><FormattedMessage id="homepage.more-info" /></button>
                         </div>
                         <div className='section-body'>
                             <Slider {...this.props.settings}>

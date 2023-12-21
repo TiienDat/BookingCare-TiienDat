@@ -4,7 +4,6 @@ import './DetailClinic.scss';
 import HomeHeader from '../../HomePage/HomeHeader';
 import DoctorSchedule from '../Doctor/DoctorSchedule'
 import DoctorExtraInfor from '../Doctor/DoctorExtraInfor'
-// import { LANGUAGES } from '../../../utils';
 import _ from 'lodash';
 import ProfileDoctor from '.././Doctor/ProfileDoctor';
 import { getDetailClinicById } from '../../../services/userService'

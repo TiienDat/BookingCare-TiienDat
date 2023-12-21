@@ -12,7 +12,11 @@
         height: 100%;
         display: flex;
 
-        
+        .center-content{
+            .child-content{
+                cursor: pointer;
+            }
+        }
         .left-content{
             width: 25%;
             display: flex;

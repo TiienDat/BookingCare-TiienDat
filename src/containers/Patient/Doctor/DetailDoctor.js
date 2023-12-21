@@ -6,6 +6,8 @@ import { getDetailInfoDoctor } from '../../../services/userService'
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule'
 import DoctorExtraInfor from './DoctorExtraInfor'
+import Comment from "../../Patient/SocialPlugin/Comment"
+import LikeAndShare from "../../Patient/SocialPlugin/LikeAndShare"
 class DetailDoctor extends Component {
 
     constructor(props) {
@@ -42,6 +44,9 @@ class DetailDoctor extends Component {
             nameVi = `${detailDoctor.positionData.valueVi},${detailDoctor.lastName} ${detailDoctor.firstName}`
             nameEn = `${detailDoctor.positionData.valueEn},${detailDoctor.firstName} ${detailDoctor.lastName}`
         }
+        console.log('check url  :', window.location.href)
+        let currentURL = +process.env.REACT_APP_IS_LOCALHOST === 1 ?
+            "https://chat-bot-services.onrender.com/" : window.location.href;
         return (
             <>
                 <HomeHeader
@@ -64,6 +69,11 @@ class DetailDoctor extends Component {
                                         {detailDoctor.Markdown.description}
                                     </span>
                                 }
+                                <div className='like-share-plugin'>
+                                    <LikeAndShare
+                                        dataHref={currentURL}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,7 +97,10 @@ class DetailDoctor extends Component {
                         }
                     </div>
                     <div className='comment-doctor'>
-
+                        <Comment
+                            dataHref={currentURL}
+                            width={'100%'}
+                        />
                     </div>
                 </div>
             </>

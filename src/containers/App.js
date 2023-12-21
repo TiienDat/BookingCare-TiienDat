@@ -23,6 +23,9 @@ import Doctor from '../routes/Doctor.js';
 import verifyEmail from './Patient/verifyEmail.js';
 import DetailSpecialty from './Patient/Specialty/DetailSpecialty.js';
 import DetailClinic from './Patient/Clinic/DetailClinic.js';
+import DetailAllClinic from './Patient/Clinic/DetailAllClinic.js';
+import DetailAllSpecialty from './Patient/Specialty/DetailAllSpecialty.js';
+import DetailAllDoctor from './Patient/Doctor/DetailAllDoctor.js';
 
 
 class App extends Component {
@@ -64,6 +67,9 @@ class App extends Component {
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={verifyEmail} />
                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
                                     <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
+                                    <Route path={path.DETAIL_ALL_CLINIC} component={DetailAllClinic} />
+                                    <Route path={path.DETAIL_ALL_SPECIALTY} component={DetailAllSpecialty} />
+                                    <Route path={path.DETAIL_ALL_DOCTOR} component={DetailAllDoctor} />
                                 </Switch>
                             </CustomScrollbars>
                         </span>
