@@ -79,7 +79,7 @@ class OutstandingDoctor extends Component {
                                                         </div>
                                                         <div className='position text-center'>
                                                             <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                                            <div>Tâm Lý</div>
+                                                            <div>{item.Doctor_Infor.specialtyData.name}</div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -290,7 +290,7 @@ class ManageDoctor extends Component {
                     </div>
                     <div className='more-info-extra row'>
                         <div className='col-4 form-group '>
-                            <labe><FormattedMessage id="admin.price" /></labe>
+                            <label><FormattedMessage id="admin.price" /></label>
                             <Select
                                 value={this.state.selectedPrice}
                                 onChange={this.handleChangeSelectDoctorInfor}
@@ -300,7 +300,7 @@ class ManageDoctor extends Component {
                             />
                         </div>
                         <div className='col-4 form-group'>
-                            <labe><FormattedMessage id="admin.payment" /></labe>
+                            <label><FormattedMessage id="admin.payment" /></label>
                             <Select
                                 value={this.state.selectedPayment}
                                 onChange={this.handleChangeSelectDoctorInfor}
@@ -310,7 +310,7 @@ class ManageDoctor extends Component {
                             />
                         </div>
                         <div className='col-4 form-group'>
-                            <labe><FormattedMessage id="admin.province" /></labe>
+                            <label><FormattedMessage id="admin.province" /></label>
                             <Select
                                 value={this.state.selectedProvince}
                                 onChange={this.handleChangeSelectDoctorInfor}
@@ -320,21 +320,21 @@ class ManageDoctor extends Component {
                             />
                         </div>
                         <div className='col-4 form-group '>
-                            <labe><FormattedMessage id="admin.nameClinic" /></labe>
+                            <label><FormattedMessage id="admin.nameClinic" /></label>
                             <input className='form-control'
                                 onChange={(event) => this.handleOnChangeText(event, 'nameClinic')}
                                 value={this.state.nameClinic}
                             ></input>
                         </div>
                         <div className='col-4 form-group'>
-                            <labe><FormattedMessage id="admin.addressClinic" /></labe>
+                            <label><FormattedMessage id="admin.addressClinic" /></label>
                             <input className='form-control'
                                 onChange={(event) => this.handleOnChangeText(event, 'addressClinic')}
                                 value={this.state.addressClinic}
                             ></input>
                         </div>
                         <div className='col-4 form-group'>
-                            <labe><FormattedMessage id="admin.note" /></labe>
+                            <label><FormattedMessage id="admin.note" /></label>
                             <input className='form-control'
                                 onChange={(event) => this.handleOnChangeText(event, 'note')}
                                 value={this.state.note}
